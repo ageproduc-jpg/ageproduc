@@ -893,8 +893,9 @@ footer .logo {
 }
 
 @keyframes droneRotate {
-  0% { transform: rotateZ(0deg); }
-  100% { transform: rotateZ(360deg); }
+  0% { transform: rotateZ(0deg) rotateX(5deg); }
+  50% { transform: rotateZ(180deg) rotateX(-5deg); }
+  100% { transform: rotateZ(360deg) rotateX(5deg); }
 }
 
 /* CHATBOT STYLES */
@@ -1198,61 +1199,75 @@ footer .logo {
 
 <body>
 
-<svg id="drone" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<svg id="drone" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ff4d1c;stop-opacity:1" />
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#404040;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
     </linearGradient>
-    <filter id="droneBlur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
-    </filter>
   </defs>
 
-  <!-- BRAZO TRASERO IZQUIERDO (atrás) -->
-  <rect x="120" y="185" width="100" height="30" fill="#1a1a1a" rx="15" opacity="0.6"/>
-  <!-- Hélice trasera izquierda -->
-  <g transform="translate(145, 200)">
-    <ellipse cx="0" cy="0" rx="50" ry="12" fill="none" stroke="#ff4d1c" stroke-width="6" opacity="0.5"/>
+  <!-- BRAZO SUPERIOR IZQUIERDO -->
+  <rect x="80" y="110" width="70" height="20" fill="#2a2a2a" rx="10"/>
+  <!-- Motor superior izquierdo -->
+  <rect x="65" y="100" width="30" height="40" fill="#1a1a1a" rx="5"/>
+  <circle cx="80" cy="120" r="12" fill="#ff4d1c"/>
+  <!-- Hélice superior izquierda -->
+  <g transform="translate(80, 120)">
+    <rect x="-45" y="-8" width="90" height="16" fill="none" stroke="#666" stroke-width="4" rx="8" opacity="0.8"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#888" stroke-width="2" opacity="0.4"/>
   </g>
 
-  <!-- BRAZO TRASERO DERECHO (atrás) -->
-  <rect x="180" y="185" width="100" height="30" fill="#1a1a1a" rx="15" opacity="0.6"/>
-  <!-- Hélice trasera derecha -->
-  <g transform="translate(255, 200)">
-    <ellipse cx="0" cy="0" rx="50" ry="12" fill="none" stroke="#ff4d1c" stroke-width="6" opacity="0.5"/>
+  <!-- BRAZO SUPERIOR DERECHO -->
+  <rect x="150" y="110" width="70" height="20" fill="#2a2a2a" rx="10"/>
+  <!-- Motor superior derecho -->
+  <rect x="205" y="100" width="30" height="40" fill="#1a1a1a" rx="5"/>
+  <circle cx="220" cy="120" r="12" fill="#ff4d1c"/>
+  <!-- Hélice superior derecha -->
+  <g transform="translate(220, 120)">
+    <rect x="-45" y="-8" width="90" height="16" fill="none" stroke="#666" stroke-width="4" rx="8" opacity="0.8"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#888" stroke-width="2" opacity="0.4"/>
   </g>
 
-  <!-- BRAZO FRONTAL IZQUIERDO (adelante) -->
-  <rect x="120" y="185" width="100" height="30" fill="#2a2a2a" rx="15"/>
-  <!-- Hélice frontal izquierda (más visible) -->
-  <g transform="translate(145, 200)">
-    <ellipse cx="0" cy="0" rx="60" ry="14" fill="none" stroke="#ff6b35" stroke-width="7" opacity="0.9"/>
-    <ellipse cx="0" cy="0" rx="58" ry="13" fill="none" stroke="#ffaa77" stroke-width="3" opacity="0.6"/>
+  <!-- BRAZO INFERIOR IZQUIERDO -->
+  <rect x="80" y="170" width="70" height="20" fill="#2a2a2a" rx="10"/>
+  <!-- Motor inferior izquierdo -->
+  <rect x="65" y="160" width="30" height="40" fill="#1a1a1a" rx="5"/>
+  <circle cx="80" cy="180" r="12" fill="#ff4d1c"/>
+  <!-- Hélice inferior izquierda -->
+  <g transform="translate(80, 180)">
+    <rect x="-45" y="-8" width="90" height="16" fill="none" stroke="#666" stroke-width="4" rx="8" opacity="0.8"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#888" stroke-width="2" opacity="0.4"/>
   </g>
 
-  <!-- BRAZO FRONTAL DERECHO (adelante) -->
-  <rect x="180" y="185" width="100" height="30" fill="#2a2a2a" rx="15"/>
-  <!-- Hélice frontal derecha (más visible) -->
-  <g transform="translate(255, 200)">
-    <ellipse cx="0" cy="0" rx="60" ry="14" fill="none" stroke="#ff6b35" stroke-width="7" opacity="0.9"/>
-    <ellipse cx="0" cy="0" rx="58" ry="13" fill="none" stroke="#ffaa77" stroke-width="3" opacity="0.6"/>
+  <!-- BRAZO INFERIOR DERECHO -->
+  <rect x="150" y="170" width="70" height="20" fill="#2a2a2a" rx="10"/>
+  <!-- Motor inferior derecho -->
+  <rect x="205" y="160" width="30" height="40" fill="#1a1a1a" rx="5"/>
+  <circle cx="220" cy="180" r="12" fill="#ff4d1c"/>
+  <!-- Hélice inferior derecha -->
+  <g transform="translate(220, 180)">
+    <rect x="-45" y="-8" width="90" height="16" fill="none" stroke="#666" stroke-width="4" rx="8" opacity="0.8"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#888" stroke-width="2" opacity="0.4"/>
   </g>
 
-  <!-- CUERPO PRINCIPAL -->
-  <ellipse cx="200" cy="200" rx="55" ry="65" fill="url(#bodyGrad)"/>
+  <!-- CUERPO CENTRAL -->
+  <ellipse cx="150" cy="150" rx="50" ry="45" fill="url(#bodyGradient)"/>
   
+  <!-- SOMBRA DEL CUERPO -->
+  <ellipse cx="150" cy="150" rx="45" ry="40" fill="#000000" opacity="0.1"/>
+
   <!-- CÁMARA FRONTAL -->
-  <circle cx="200" cy="235" r="12" fill="#0a0a0a"/>
-  <circle cx="200" cy="235" r="10" fill="#1a1a1a"/>
-  <circle cx="200" cy="235" r="6" fill="#0a0a0a" opacity="0.8"/>
+  <rect x="135" y="165" width="30" height="20" fill="#0a0a0a" rx="4"/>
+  <circle cx="150" cy="175" r="8" fill="#1a1a1a"/>
+  <circle cx="150" cy="175" r="5" fill="#0a0a0a"/>
 
-  <!-- DETALLES DEL CUERPO -->
-  <ellipse cx="185" cy="190" rx="8" ry="12" fill="#f0b67f" opacity="0.7"/>
-  <ellipse cx="215" cy="190" rx="8" ry="12" fill="#f0b67f" opacity="0.7"/>
-  
-  <!-- SOMBRA INTERIOR (efecto 3D) -->
-  <ellipse cx="200" cy="210" rx="45" ry="50" fill="#000000" opacity="0.15"/>
+  <!-- INDICADOR LED (rojo) -->
+  <circle cx="150" cy="120" r="3" fill="#ff4d1c" opacity="0.8"/>
+
+  <!-- DETALLES LATERALES -->
+  <circle cx="125" cy="140" r="2" fill="#ff4d1c" opacity="0.6"/>
+  <circle cx="175" cy="140" r="2" fill="#ff4d1c" opacity="0.6"/>
 </svg>
 
 <nav>
