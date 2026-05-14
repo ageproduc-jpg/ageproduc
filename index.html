@@ -118,7 +118,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  pointer-events: none;
+  pointer-events: auto; cursor: pointer;
   z-index: 100;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   opacity: var(--grain-opacity);
@@ -129,7 +129,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  pointer-events: none;
+  pointer-events: auto; cursor: pointer;
   z-index: 99;
   background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
 }
@@ -732,7 +732,7 @@ nav .cta-mini {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 30% 50%, rgba(255, 77, 28, 0.1) 0%, transparent 50%);
-  pointer-events: none;
+  pointer-events: auto; cursor: pointer;
 }
 
 .contact-inner {
@@ -866,7 +866,7 @@ footer .logo {
   position: fixed;
   width: 160px;
   height: 160px;
-  pointer-events: none;
+  pointer-events: auto; cursor: pointer;
   z-index: 10;
   filter: drop-shadow(0 15px 35px rgba(255, 77, 28, 0.3));
   animation: droneBreathe 4s ease-in-out infinite;
@@ -1498,119 +1498,323 @@ footer .logo {
 <script>
 const CHATBOT_KNOWLEDGE_BASE = {
   services: {
-    keywords: ['servicio', 'qué ofrecen', 'que hacen', 'servicios', 'ofrecen'],
-    response: `📹 NUESTROS SERVICIOS:
+    keywords: ['servicio', 'qué ofrecen', 'que hacen', 'servicios', 'ofrecen', 'qué hacen'],
+    response: `📹 SERVICIOS DISPONIBLES:
 
-• Producción de Video Profesional
-  Videos para redes sociales, comerciales, corporativos
+FOTOGRAFÍA Y VIDEO PROFESIONAL
+Contenido mensual para redes sociales:
+• 40 fotografías mensuales editadas
+• 6 videos profesionales
+• Imágenes con drone incluidas
+• Campañas personalizadas
 
-• Fotografía Profesional
-  Sesiones de producto, eventos, contenido digital
+DRONE CINEMATOGRÁFICO
+Tomas aéreas 4K con cámaras Sony A7III y A7IV.
 
-• Drone Cinematográfico
-  Tomas aéreas 4K para perspectivas únicas
+PODCAST Y PROGRAMAS PROFESIONALES
+4 capítulos de 45 minutos grabados en UN DÍA COMPLETO:
+• Estudio profesional con iluminación 3 puntos
+• Micróffonos inalámbricos
+• Cámaras profesionales
+• iPads para teleprompter
+• Clips optimizados para redes (TikTok, Instagram, Facebook, YouTube Shorts)
+• Capítulos completos para YouTube
+• Edición completa incluida
 
-• Podcast Móvil
-  Estudio de podcast in-situ con equipamiento profesional
+ENTRETENIMIENTO PARA EVENTOS
+• Espejo mágico: Fotos impresas instantáneamente
+• Cámara 360: Videos 360° descargables
+• Cabina fotográfica: Fotos con cotillón
+• Estudio fotográfico móvil: Fotos grandes con opciones de impresión
 
-• Edición y Post-Producción
-  Color grading, VFX, composición y edición avanzada
-
-¿Cuál de estos servicios te interesa?`
+¿Te interesa conocer más sobre algún servicio?`
   },
 
   pricing: {
-    keywords: ['precio', 'costo', 'tarifa', 'starter', 'pack', 'cuanto cuesta', 'valor', 'plan'],
-    response: `💰 NUESTROS PLANES:
+    keywords: ['precio', 'costo', 'tarifa', 'pack', 'cuanto cuesta', 'valor', 'plan', 'planes', 'cuánto vale'],
+    response: `💰 INFORMACIÓN DE PRECIOS:
 
-STARTER PACK (3 MESES)
-✓ 10 fotografías semanales editadas
-✓ 2 videos profesionales tipo reel/mes
-✓ Imágenes con drone incluidas
-✓ Formatos vertical y apaisado
-✓ Equipamiento profesional
-✓ Tarifa preferencial por contrato 3 meses
+FOTOGRAFÍA Y VIDEO MENSUAL
+• Plan regular: $289.000 +IVA / mes
+• Plan starter (3 meses): $199.000 +IVA / mes
 
-PACK EXPRESS (1 DÍA)
-✓ 4 videos grabados en una jornada
-✓ Totalmente editados
-✓ Ideal para campañas y lanzamientos rápidos
+ENTRETENIMIENTO (2 HORAS)
+• Espejo mágico: $199.000 +IVA
+• Cámara 360: $180.000 +IVA
+• Cabina fotográfica: $199.000 +IVA
 
-Para cotización personalizada:
-📱 WhatsApp: +56 9 4066 2286`
+ESTUDIO FOTOGRÁFICO MÓVIL (2 HORAS)
+• Sin impresión (copia digital): $290.000 +IVA
+• Con impresión (hasta 100 fotos): $390.000 +IVA
+
+PODCAST Y PROGRAMAS
+• 4 capítulos (45 min c/u, 1 día grabación): $400.000 +IVA
+• 1 capítulo (45 min) + 4 videos cortos: $289.000 +IVA
+
+Todos los precios son sin IVA. El IVA se suma al momento de la contratación.
+
+¿Deseas más información?`
   },
 
   process: {
-    keywords: ['proceso', 'cómo trabajan', 'workflow', 'etapas', 'pasos', 'metodología'],
+    keywords: ['proceso', 'cómo trabajan', 'workflow', 'etapas', 'pasos', 'metodología', 'cómo funciona', 'plazo', 'cuánto tiempo'],
     response: `⚙️ NUESTRO PROCESO DE TRABAJO:
 
-1️⃣ BRIEFING
-   Conversamos sobre tu marca, objetivos y audiencia
+1. REUNIÓN INICIAL
+   Conversamos sobre tus necesidades, objetivos y requisitos técnicos. Se elabora contrato.
 
-2️⃣ PRODUCCIÓN
-   Grabación con cámaras profesionales, drone y estudio móvil
+2. PLANIFICACIÓN
+   Elaboramos libretos y pautas. Presentamos propuesta creativa y realizamos ajustes según tu feedback.
 
-3️⃣ EDICIÓN
-   Post-producción profesional, color grading y optimización
+3. PRODUCCIÓN
+   Grabación con equipamiento profesional. Un día completo de trabajo.
 
-4️⃣ ENTREGA
-   Material listo para publicar en todos los formatos
+4. ENTREGA
+   Edición profesional completa. Plazo aproximado: 7 a 30 días según complejidad.
 
-⏱️ Tiempo promedio: 5-10 días según el proyecto
+FORMA DE PAGO
+El pago se realiza después de la reunión inicial, cuando ambas partes confirman el servicio.
 
-¿Tienes un proyecto en mente?`
+¿Tienes alguna pregunta específica?`
   },
 
-  equipment: {
-    keywords: ['equipo', 'cámaras', 'drone', 'herramientas', 'especificaciones', 'specs', 'tecnología'],
-    response: `🎬 NUESTRO EQUIPAMIENTO:
+  payment: {
+    keywords: ['pago', 'formas de pago', 'tarjeta', 'transferencia', 'cuotas', 'cómo pago', 'métodos de pago'],
+    response: `💳 FORMAS DE PAGO:
 
-✓ Cámaras 4K Full Frame (Sony, Canon)
-✓ Drone Cinematográfico 4K
-✓ Estudio Móvil de Podcast
-✓ Iluminación Profesional LED
-✓ Sistema de Edición Avanzada
-✓ Micróffonos profesionales
-✓ Equipo de estabilización
+TARJETA DE CRÉDITO
+• 1 cuota sin interés
+• 2 cuotas sin interés
+• 3 cuotas sin interés
 
-Todo el equipamiento es de última generación y está regularizado para trabajos profesionales.
+TRANSFERENCIA BANCARIA
+• 1 sola cuota por mes
+• O todos los meses de una vez (ejemplo: 3 meses de una sola vez)
 
-¿Necesitas más detalles técnicos?`
+PROCESO
+El pago se realiza después de la reunión inicial, cuando confirmas el servicio contratado. Se elabora contrato.
+
+¿Necesitas más detalles?`
+  },
+
+  podcast: {
+    keywords: ['podcast', 'programa', 'programa de tv', 'televisión', 'capítulos', 'conductores', '45 minutos', '4 capítulos'],
+    response: `🎙️ PODCAST Y PROGRAMAS PROFESIONALES
+
+¿QUÉ ES?
+4 capítulos de 45 minutos CADA UNO, grabados en UN DÍA COMPLETO de producción.
+
+OPCIÓN 1: 4 CAPÍTULOS COMPLETOS
+Precio: $400.000 +IVA
+• 4 capítulos de 45 minutos cada uno
+• Se extraen CLIPS CORTOS para redes (TikTok, Instagram, Facebook, YouTube Shorts)
+• Capítulos completos para YouTube
+• Edición completa
+
+OPCIÓN 2: 1 CAPÍTULO + 4 VIDEOS CORTOS
+Precio: $289.000 +IVA
+• 1 capítulo completo de 45 minutos
+• 4 videos cortos para redes sociales
+
+¿QUÉ INCLUYE?
+• Estudio profesional con iluminación de 3 puntos por persona
+• Micróffonos inalámbricos de calidad
+• Cámaras profesionales Sony
+• iPads para teleprompter
+• Libretos y pautas elaboradas
+• Edición profesional completa
+• Plazo de entrega: 7 a 30 días según complejidad
+
+DIRECCIÓN Y CONDUCCIÓN
+Podemos ser nosotros los conductores o contratas los tuyos.
+
+GRABACIÓN
+• En local del cliente o locación preferida
+• Un día completo de producción
+
+¿Quieres producir tu programa?`
+  },
+
+  espejo_magico: {
+    keywords: ['espejo', 'espejo mágico', 'mágico', 'evento', 'boda', 'entretenimiento'],
+    response: `🪞 ESPEJO MÁGICO
+
+Precio: $199.000 +IVA
+Duración: 2 horas
+
+¿QUÉ INCLUYE?
+• Espejo interactivo profesional
+• Fotos impresas instantáneamente con branding
+• 3 fotos por persona
+• 2 copias por sesión
+• Recuerdos para invitados
+
+¿CÓMO FUNCIONA?
+1. La persona se para frente al espejo
+2. Se toman 3 fotos entretenidas
+3. Salen impresas 2 copias al instante
+
+USO EN EVENTOS
+En bodas: 1 copia para invitado, 1 para los novios
+En otros eventos: 2 copias para la persona
+
+CARACTERÍSTICA ESPECIAL
+Somos los únicos con este servicio en Algarrobo.
+
+¿Interesado en contratar?`
+  },
+
+  camara_360: {
+    keywords: ['360', 'cámara 360', 'video 360', 'airdrop', 'vídeo 360'],
+    response: `📷 CÁMARA 360
+
+Precio: $180.000 +IVA
+Duración: 2 horas
+
+¿QUÉ INCLUYE?
+• Videos 360° profesionales
+• Se suben a la plataforma
+• Descarga inmediata vía airdrop en celular
+• Iluminación LED profesional
+• Alfombra roja para ambientación
+
+¿CÓMO FUNCIONA?
+1. Se graba el video 360°
+2. Se sube a la plataforma
+3. Los invitados descargan vía airdrop en su celular
+4. Tienen el video al instante
+
+¿Para qué tipo de evento te interesa?`
+  },
+
+  cabina: {
+    keywords: ['cabina', 'cabina fotográfica', 'inflable', 'tótem', 'foto'],
+    response: `📸 CABINA FOTOGRÁFICA
+
+Precio: $199.000 +IVA
+Duración: 2 horas
+
+¿QUÉ INCLUYE?
+• Cabina fotográfica inflable profesional
+• Tótem automático para fotos
+• Accesorios y cotillón entretenido
+• Fotos impresas al instante
+• Branding personalizado
+
+CARACTERÍSTICAS
+• Espacio privado para más comodidad
+• Fotos más grandes que espejo mágico
+• Accesorios y props incluidos
+• Entretenimiento garantizado
+
+¿Interesado en contratar para tu evento?`
+  },
+
+  estudio_movil: {
+    keywords: ['estudio', 'estudio fotográfico', 'móvil', 'estudio móvil', 'fotos grandes'],
+    response: `🎬 ESTUDIO FOTOGRÁFICO MÓVIL
+
+OPCIONES:
+
+SIN IMPRESIÓN (copia digital)
+Precio: $290.000 +IVA
+Duración: 2 horas
+• Fotos grandes en formato horizontal o vertical
+• Blanco y negro o color
+• Copia digital de todas las fotos
+
+CON IMPRESIÓN
+Precio: $390.000 +IVA
+Duración: 2 horas
+• Hasta 100 fotos impresas
+• Formatos personalizables
+• Blanco y negro o color
+
+VENTAJAS
+• Fotos más grandes que otros servicios
+• Mejor calidad de luz profesional
+• Las personas se toman solas o en grupo
+• Flexible en opciones
+
+¿Cuál opción te interesa?`
+  },
+
+  alonso: {
+    keywords: ['alonso', 'dueño', 'director', 'experiencia', 'portalboda', '10 años'],
+    response: `👤 ALONSO GÓMEZ - DIRECTOR
+
+Comunicador Audiovisual con 10+ años de experiencia en video y fotografía.
+
+TRAYECTORIA
+✓ Creador del sitio Portalboda.cl (referente en bodas en Chile)
+✓ Experiencia en televisión abierta
+✓ Especialista en producción audiovisual integral
+
+UBICACIÓN
+Valparaíso, Región de Valparaíso, Chile.
+
+Podemos ayudarte con tu proyecto audiovisual.
+
+¿Hay algo más que quieras saber?`
   },
 
   contact: {
-    keywords: ['contactar', 'hablar', 'persona', 'equipo', 'comunicarse', 'llamar', 'contacto', 'directo'],
-    response: `📞 CONTACTA CON NUESTRO EQUIPO:
+    keywords: ['contactar', 'hablar', 'persona', 'equipo', 'comunicarse', 'llamar', 'contacto', 'directo', 'agendar', 'reunión'],
+    response: `📞 INFORMACIÓN DE CONTACTO:
 
-📱 WHATSAPP (RECOMENDADO)
-Link: https://wa.me/56940662286
-Teléfono: +56 9 4066 2286
+WhatsApp: +56 9 4066 2286
+Email: contacto@ageproduc.cl
+Ubicación: Valparaíso, Región de Valparaíso, Chile
 
-📧 EMAIL
-contacto@ageproduc.cl
+PROCESO
+1. Contacta por WhatsApp o email
+2. Agendamos reunión inicial
+3. Conversamos sobre tus necesidades
+4. Hacemos cotización personalizada
+5. Se elabora contrato
 
-🌐 SITIO WEB
-www.ageproduc.cl
+¿Por cuál medio prefieres contactarnos?`
+  },
 
-Responden:
-Lunes - Viernes: 9:00 - 18:00
-Sábado: 10:00 - 14:00
+  landing_page: {
+    keywords: ['landing', 'landing page', 'sitio web', 'web', 'página', 'sitio', 'regalo', 'página web'],
+    response: `🌐 LANDING PAGE
 
-¿Cuál medio prefieres?`
+La landing page se incluye como regalo al contratar el plan starter de Fotografía y Video Mensual (3 meses).
+
+CARACTERÍSTICAS
+• Sitio web profesional personalizado
+• Ampliable según tus necesidades
+• Crece con tus servicios
+
+No se vende como servicio individual.
+
+¿Quieres saber más sobre el plan starter?`
+  },
+
+  chatbot: {
+    keywords: ['chatbot', 'asistente', 'automatizado', 'respuestas automáticas'],
+    response: `🤖 CHATBOT AUTOMATIZADO
+
+El chatbot se incluye como regalo al contratar 12 meses de Fotografía y Video Mensual.
+
+CARACTERÍSTICAS
+• Respuestas automatizadas para tus clientes
+• Sin servicio técnico incluido
+• Sin actualizaciones incluidas
+
+Es parte de la propuesta de valor para contratos anuales.
+
+¿Tienes otras preguntas?`
   },
 
   default: {
-    response: `❓ No estoy completamente seguro de esa pregunta.
+    response: `Entiendo tu pregunta. Para temas más específicos o detalles que no cubro, te recomiendo contactar directamente con nuestro equipo.
 
-Pero puedo ayudarte con:
-✓ Servicios
-✓ Precios y planes
-✓ Proceso de trabajo
-✓ Equipamiento
+WhatsApp: +56 9 4066 2286
+Email: contacto@ageproduc.cl
 
-O contacta directo con nuestro equipo:
-📱 WhatsApp: https://wa.me/56940662286
-📧 Email: contacto@ageproduc.cl`
+¿Hay algo más en lo que pueda ayudarte?`
   }
 };
 
@@ -1822,6 +2026,89 @@ document.querySelector('footer div:nth-child(2)').innerHTML =
     requestAnimationFrame(animate);
   }
   animate();
+
+  // Evento de click para tomar foto
+  drone.addEventListener('click', function(e) {
+    e.stopPropagation();
+    triggerDroneFlash();
+  });
+
+  // También permitir click en el SVG
+  drone.addEventListener('mousedown', function(e) {
+    if (e.target.closest('svg')) {
+      e.preventDefault();
+      triggerDroneFlash();
+    }
+  });
+
+  function triggerDroneFlash() {
+    // Crear elemento de flash
+    const flash = document.createElement('div');
+    flash.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 9999;
+      pointer-events: auto; cursor: pointer;
+      opacity: 0.9;
+      animation: cameraFlash 0.5s ease-out forwards;
+    `;
+    document.body.appendChild(flash);
+
+    // Agregar animación al CSS si no existe
+    if (!document.getElementById('cameraFlashStyle')) {
+      const style = document.createElement('style');
+      style.id = 'cameraFlashStyle';
+      style.textContent = `
+        @keyframes cameraFlash {
+          0% { opacity: 0.9; }
+          50% { opacity: 0.4; }
+          100% { opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Reproducir sonido de cámara
+    playCameraSound();
+
+    // Remover el flash después de la animación
+    setTimeout(() => flash.remove(), 500);
+  }
+
+  function playCameraSound() {
+    // Crear sonido de cámara usando Web Audio API
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Crear un sonido de cámara simple pero efectivo
+    const now = audioContext.currentTime;
+    
+    // Primer beep (tono alto)
+    const osc1 = audioContext.createOscillator();
+    const gain1 = audioContext.createGain();
+    osc1.connect(gain1);
+    gain1.connect(audioContext.destination);
+    osc1.frequency.setValueAtTime(1000, now);
+    gain1.gain.setValueAtTime(0.3, now);
+    gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+    osc1.start(now);
+    osc1.stop(now + 0.1);
+    
+    // Segundo beep (tono bajo)
+    const osc2 = audioContext.createOscillator();
+    const gain2 = audioContext.createGain();
+    osc2.connect(gain2);
+    gain2.connect(audioContext.destination);
+    osc2.frequency.setValueAtTime(800, now + 0.05);
+    gain2.gain.setValueAtTime(0, now + 0.05);
+    gain2.gain.linearRampToValueAtTime(0.2, now + 0.1);
+    gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+    osc2.start(now + 0.05);
+    osc2.stop(now + 0.15);
+  }
 
   window.addEventListener('resize', () => {
     x = Math.min(x, window.innerWidth - 50);
