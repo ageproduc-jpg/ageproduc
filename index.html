@@ -1,56 +1,883 @@
-<!-- CHATBOT AVANZADO AGEPRODUC CON BASE DE DATOS -->
-<div id="chatbot-container">
-  <div id="chatbot-toggle" class="chatbot-toggle">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-    </svg>
-    <span class="badge">1</span>
-  </div>
-
-  <div id="chatbot-window" class="chatbot-window">
-    <div class="chatbot-header">
-      <div class="chatbot-title">
-        <h3>AGEPRODUC Assistant</h3>
-        <p>¿En qué podemos ayudarte?</p>
-      </div>
-      <button id="chatbot-close" class="chatbot-close">✕</button>
-    </div>
-
-    <div id="chatbot-messages" class="chatbot-messages">
-      <div class="message bot-message">
-        <div class="message-content">
-          ¡Hola! 👋 Soy el asistente de AGEPRODUC. Puedo ayudarte con preguntas sobre nuestros servicios, planes y presupuestos. ¿En qué puedo asistirte?
-        </div>
-      </div>
-    </div>
-
-    <div class="chatbot-input-area">
-      <div id="chatbot-suggestions" class="chatbot-suggestions">
-        <button class="suggestion-btn" data-intent="services">Servicios</button>
-        <button class="suggestion-btn" data-intent="pricing">Precios</button>
-        <button class="suggestion-btn" data-intent="process">Proceso</button>
-        <button class="suggestion-btn" data-intent="contact">Contactar</button>
-      </div>
-
-      <div class="chatbot-input-wrapper">
-        <input 
-          type="text" 
-          id="chatbot-input" 
-          placeholder="Escribe tu pregunta..." 
-          class="chatbot-input"
-        >
-        <button id="chatbot-send" class="chatbot-send">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.40,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 L4.13399899,1.16153582 C3.34915502,0.9 2.40734225,0.9 1.77946707,1.4265701 C0.994623095,2.0604706 0.837654326,3.0605983 1.15159189,3.84608516 L3.03521743,10.2870782 C3.03521743,10.4441756 3.34915502,10.6012729 3.50612381,10.6012729 L16.6915026,11.3867598 C16.6915026,11.3867598 17.1624089,11.3867598 17.1624089,10.9154676 L17.1624089,11.89 C17.1624089,12.52 17.1624089,12.4744748 16.6915026,12.4744748 Z"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>AGEPRODUC — Productora Audiovisual</title>
+<meta name="description" content="Productora audiovisual en Valparaíso. Contenido para redes sociales, drone, podcast móvil, fotografía y video profesional. Servicios audiovisuales completos.">
+<meta name="keywords" content="producción audiovisual, video production, fotografía profesional, streaming, Valparaíso, producción video, contenido digital, servicios audiovisuales, drone, podcast">
+<meta name="author" content="AGEPRODUC">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="language" content="Spanish">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ageproduc.cl">
+<meta property="og:title" content="AGEPRODUC — Productora Audiovisual Profesional">
+<meta property="og:description" content="Servicios completos de producción audiovisual: video, fotografía, streaming y contenido digital. Equipamiento profesional en Valparaíso.">
+<meta property="og:image" content="https://ageproduc.cl/assets/ageproduc-og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="AGEPRODUC">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://ageproduc.cl">
+<meta name="twitter:title" content="AGEPRODUC — Productora Audiovisual">
+<meta name="twitter:description" content="Servicios completos de producción audiovisual en Valparaíso">
+<meta name="twitter:image" content="https://ageproduc.cl/assets/ageproduc-twitter-image.jpg">
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="canonical" href="https://www.ageproduc.cl">
+<link rel="alternate" hreflang="es" href="https://www.ageproduc.cl">
+<link rel="alternate" hreflang="es-CL" href="https://www.ageproduc.cl">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "AGEPRODUC",
+  "image": "https://ageproduc.cl/assets/ageproduc-logo.jpg",
+  "description": "Producción audiovisual profesional y servicios de contenido digital",
+  "url": "https://www.ageproduc.cl",
+  "telephone": "+56940662286",
+  "email": "contacto@ageproduc.cl",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Valparaíso",
+    "addressRegion": "Valparaíso",
+    "postalCode": "2340000",
+    "addressCountry": "CL"
+  },
+  "areaServed": "CL",
+  "priceRange": "$$$",
+  "sameAs": [
+    "https://www.facebook.com/ageproduc",
+    "https://www.instagram.com/ageproduc",
+    "https://www.linkedin.com/company/ageproduc",
+    "https://www.youtube.com/@ageproduc"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Producción Audiovisual Profesional",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AGEPRODUC"
+  },
+  "description": "Servicios completos de producción de video, fotografía, streaming y contenido digital",
+  "areaServed": "CL",
+  "availableLanguage": "es"
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+<meta name="google-site-verification" content="TU_CODIGO_AQUI">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AGEPRODUC">
+<meta name="theme-color" content="#000000">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com">
 
 <style>
-/* ========= CHATBOT STYLES ========= */
+:root {
+  --bg: #0a0908;
+  --bg-alt: #131210;
+  --ink: #f5f1e8;
+  --ink-dim: #8a8377;
+  --accent: #ff4d1c;
+  --accent-soft: #f0b67f;
+  --line: rgba(245, 241, 232, 0.08);
+  --grain-opacity: 0.06;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.5;
+  cursor: default;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: difference;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+nav .logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  font-style: italic;
+  text-transform: none;
+}
+
+nav .logo::after {
+  content: '●';
+  color: var(--accent);
+  margin-left: 0.4rem;
+  font-size: 0.6rem;
+  vertical-align: middle;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+nav ul {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  transition: opacity 0.3s;
+}
+
+nav a:hover { opacity: 0.5; }
+
+nav .cta-mini {
+  border: 1px solid var(--ink);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 8rem 2.5rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  position: relative;
+  align-items: end;
+}
+
+.hero-meta {
+  position: absolute;
+  top: 8rem;
+  right: 2.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 2;
+}
+
+.hero-meta span { color: var(--accent); }
+
+.hero-title {
+  grid-column: 1 / -1;
+  font-size: clamp(4rem, 14vw, 13rem);
+  font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title .word {
+  display: inline-block;
+  animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.hero-title .word:nth-child(1) { animation-delay: 0.1s; }
+.hero-title .word:nth-child(2) { animation-delay: 0.25s; }
+.hero-title .word:nth-child(3) { animation-delay: 0.4s; }
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hero-sub {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+  align-items: end;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  max-width: 32ch;
+  color: var(--ink-dim);
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero-tagline strong {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-self: end;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.8rem;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px);
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.btn.primary:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.btn .arrow {
+  display: inline-block;
+  transition: transform 0.4s;
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.2rem 0;
+  overflow: hidden;
+  background: var(--bg-alt);
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  animation: scroll 30s linear infinite;
+  white-space: nowrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-item { display: flex; gap: 4rem; align-items: center; }
+.marquee-item span { color: var(--accent); }
+
+.services {
+  padding: 6rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.services-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.services-header h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.1;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.services-header h2 em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.services-header p {
+  color: var(--ink-dim);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 45ch;
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.services-list li {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.services-list li:hover {
+  background: rgba(255, 77, 28, 0.05);
+  border-color: var(--accent);
+  transform: translateX(8px);
+}
+
+.services-list li strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.starter {
+  padding: 6rem 2.5rem;
+  background: var(--bg-alt);
+}
+
+.starter-inner {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.starter-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.starter-header h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  margin: 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.starter-header h2 em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.starter-header p {
+  color: var(--ink-dim);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.price-card {
+  padding: 3rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px);
+}
+
+.price-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+}
+
+.price-main {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 1.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.price-iva {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.discount-banner {
+  padding: 1rem;
+  background: rgba(255, 77, 28, 0.1);
+  border-left: 3px solid var(--accent);
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.discount-banner span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.price-features {
+  list-style: none;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.price-features li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.price-features .check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.price-features span {
+  line-height: 1.4;
+}
+
+.combo {
+  padding: 4rem 2.5rem;
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.combo-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4rem;
+  align-items: center;
+}
+
+.combo-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(10, 9, 8, 0.6);
+}
+
+.combo-content h3 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0;
+}
+
+.combo-content em {
+  font-style: italic;
+}
+
+.combo-content p {
+  color: rgba(10, 9, 8, 0.7);
+  max-width: 35ch;
+}
+
+.combo-price {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.num-prefix, .num-suffix {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(10, 9, 8, 0.6);
+}
+
+.specs {
+  padding: 6rem 2.5rem;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.specs-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  margin-top: 2rem;
+}
+
+.specs-title em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+}
+
+.specs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.specs-list li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.specs-list .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.specs-list .name {
+  font-size: 1.1rem;
+  font-weight: 400;
+  display: block;
+}
+
+.specs-list .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.process {
+  padding: 6rem 2.5rem;
+  background: var(--bg-alt);
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 1.5rem 0 4rem;
+  max-width: 800px;
+}
+
+.section-title em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+}
+
+.step {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step h4 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.step p {
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.contact {
+  position: relative;
+  padding: 8rem 2.5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.contact-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(255, 77, 28, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.contact-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.contact h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.contact h2 em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.2rem 2.5rem;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: 2rem 0;
+  border: 2px solid var(--accent);
+}
+
+.whatsapp-btn:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.contact-info {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.contact-info > div {
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.contact-info a {
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+
+.contact-info a:hover {
+  color: var(--accent);
+}
+
+footer {
+  padding: 3rem 2.5rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+footer .logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.float-wa {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  z-index: 40;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+}
+
+.float-wa:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+}
+
+#drone {
+  position: fixed;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 10px 25px rgba(255, 77, 28, 0.2));
+}
+
+#drone svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* CHATBOT STYLES */
 #chatbot-container {
   font-family: 'JetBrains Mono', monospace;
   --chat-primary: #ff4d1c;
@@ -118,17 +945,6 @@
 
 .chatbot-window.active {
   display: flex;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .chatbot-header {
@@ -203,23 +1019,12 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.bot-message {
-  justify-content: flex-start;
-}
-
-.user-message {
-  justify-content: flex-end;
-}
+.bot-message { justify-content: flex-start; }
+.user-message { justify-content: flex-end; }
 
 .message-content {
   max-width: 85%;
@@ -256,21 +1061,12 @@
   animation: typing 1.4s infinite;
 }
 
-.typing-dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-dot:nth-child(3) {
-  animation-delay: 0.4s;
-}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
 @keyframes typing {
-  0%, 60%, 100% {
-    opacity: 0.3;
-  }
-  30% {
-    opacity: 1;
-  }
+  0%, 60%, 100% { opacity: 0.3; }
+  30% { opacity: 1; }
 }
 
 .chatbot-input-area {
@@ -346,36 +1142,285 @@
   transition: all 0.2s;
 }
 
-.chatbot-send:hover {
-  transform: scale(1.05);
-}
+.chatbot-send:hover { transform: scale(1.05); }
+.chatbot-send:active { transform: scale(0.95); }
 
-.chatbot-send:active {
-  transform: scale(0.95);
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { gap: 1.5rem; }
+  nav .logo { font-size: 0.9rem; }
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 2rem; }
+  .hero-meta { display: none; }
+  .hero-title { grid-column: 1; }
+  .hero-sub { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+  .services { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2rem; }
+  .combo-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .combo-price { align-items: flex-start; text-align: left; }
+  .specs-grid { grid-template-columns: 1fr; gap: 2rem; padding: 0; }
+  .process-grid { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .float-wa { width: 45px; height: 45px; bottom: 1.5rem; right: 1.5rem; }
 }
 
 @media (max-width: 480px) {
-  .chatbot-window {
-    width: calc(100vw - 2rem);
-    height: calc(100vh - 150px);
-    bottom: 120px;
-    right: 1rem;
-  }
-
-  .chatbot-toggle {
-    bottom: 5rem;
-    right: 1rem;
-    width: 50px;
-    height: 50px;
-  }
+  nav { padding: 0.8rem 1rem; }
+  nav ul { display: none; }
+  .hero-tagline { font-size: 1rem; }
+  .starter-inner { padding: 0 1rem; }
+  .price-card { padding: 1.5rem; }
+  .combo { padding: 3rem 1.5rem; }
+  .contact { padding: 4rem 1.5rem; }
+  .chatbot-window { width: calc(100vw - 2rem); height: calc(100vh - 150px); bottom: 120px; right: 1rem; }
+  .chatbot-toggle { bottom: 5rem; right: 1rem; width: 50px; height: 50px; }
 }
 </style>
+</head>
+
+<body>
+
+<svg id="drone" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="droneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff4d1c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0b67f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="45" fill="url(#droneGradient)" opacity="0.9"/>
+  <rect x="70" y="95" width="60" height="10" fill="#0a0908" rx="5"/>
+  <rect x="95" y="70" width="10" height="60" fill="#0a0908" rx="5"/>
+  <circle cx="65" cy="65" r="5" fill="#ff4d1c"/>
+  <circle cx="135" cy="65" r="5" fill="#ff4d1c"/>
+  <circle cx="65" cy="135" r="5" fill="#ff4d1c"/>
+  <circle cx="135" cy="135" r="5" fill="#ff4d1c"/>
+</svg>
+
+<nav>
+  <div class="logo">AGEPRODUC</div>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#pack">Planes</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/56940662286" class="cta-mini">WhatsApp</a>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="hero-meta">
+    <span>EST. VALPARAÍSO</span>
+    PRODUCTORA AUDIOVISUAL
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line"><span class="word">Historias</span></span>
+    <span class="line"><span class="word">que</span></span>
+    <span class="line"><span class="word"><em>se ven.</em></span></span>
+  </h1>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item">
+        <span>●</span> Video profesional
+        <span>●</span> Fotografía 4K
+        <span>●</span> Drone cinematográfico
+        <span>●</span> Podcast móvil
+        <span>●</span> Edición avanzada
+      </div>
+      <div class="marquee-item">
+        <span>●</span> Video profesional
+        <span>●</span> Fotografía 4K
+        <span>●</span> Drone cinematográfico
+        <span>●</span> Podcast móvil
+        <span>●</span> Edición avanzada
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-sub">
+    <p class="hero-tagline">Producción audiovisual especializada en contenido para <strong>redes sociales, campañas y eventos</strong> que generan impacto.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/56940662286?text=Hola%20AGEPRODUC%2C%20me%20interesa%20cotizar." class="btn primary">Cotizar <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="services-header">
+    <div class="section-label">01 / Servicios</div>
+    <h2>Contenido que <em>impacta.</em></h2>
+    <p>Desde la concepto hasta la entrega final, nos hacemos cargo de toda la producción audiovisual de tu marca.</p>
+  </div>
+
+  <ul class="services-list">
+    <li><strong>Producción de video</strong><br>Desde videos para redes sociales hasta producciones comerciales de alto nivel.</li>
+    <li><strong>Fotografía profesional</strong><br>Sesiones de producto, eventos y contenido para marketing digital.</li>
+    <li><strong>Drone y tomas aéreas</strong><br>Cinematografía con drone 4K para perspectivas únicas.</li>
+    <li><strong>Podcast móvil</strong><br>Estudio de podcast in-situ con equipamiento profesional.</li>
+    <li><strong>Edición y post-producción</strong><br>Edición de video, color grading, VFX y composición.</li>
+  </ul>
+</section>
+
+<section class="starter" id="pack">
+  <div class="starter-inner">
+    <div class="starter-header">
+      <div class="section-label">02 / Plan estrella</div>
+      <h2>Starter Pack <em>3 meses</em>.</h2>
+      <p>Pensado para marcas que quieren constancia y calidad sin pagar por cada pieza por separado. Producción mensual, edición y entrega lista para publicar.</p>
+    </div>
+
+    <div class="price-card">
+      <div class="price-badge">Plan estrella</div>
+      <div class="price-main"><em style="font-style:italic;color:var(--accent);">Starter</em></div>
+      <div class="price-iva">Plan mensual · 3 meses</div>
+
+      <div class="discount-banner">
+        <strong>Tarifa preferencial por contrato de 3 meses</strong>
+        <span>Promo</span>
+      </div>
+
+      <ul class="price-features">
+        <li><span class="check">[01]</span><span><strong>10 fotografías semanales</strong> profesionales editadas y listas para publicar</span></li>
+        <li><span class="check">[02]</span><span><strong>2 videos profesionales tipo reel</strong> al mes, totalmente editados</span></li>
+        <li><span class="check">[03]</span><span><strong>Imágenes con drone</strong> incluidas en los videos del mes</span></li>
+        <li><span class="check">[04]</span><span>Formato <strong>vertical y apaisado</strong> según necesidad de cada red</span></li>
+        <li><span class="check">[05]</span><span>Cámaras <strong>profesionales</strong> y edición lista para publicar</span></li>
+      </ul>
+
+      <a href="https://wa.me/56940662286?text=Hola%2C%20quiero%20cotizar%20el%20Starter%20Pack%20de%203%20meses." class="btn primary" style="width:100%;justify-content:center;">Solicitar cotización <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="combo">
+  <div class="combo-inner">
+    <div class="combo-label">Pack express</div>
+    <div class="combo-content">
+      <h3>4 videos en <em>un solo día</em>.</h3>
+      <p>Producción intensiva: agendamos una jornada, grabamos las cuatro piezas y entregamos editado. Ideal para campañas y lanzamientos rápidos.</p>
+    </div>
+    <div class="combo-price">
+      <span class="num-prefix">Pack express</span>
+      <a href="https://wa.me/56940662286?text=Hola%2C%20me%20interesa%20el%20pack%20de%204%20videos%20en%20un%20d%C3%ADa." class="btn primary" style="margin-top:0.5rem;">Solicitar cotización <span class="arrow">→</span></a>
+      <span class="num-suffix">1 día de grabación · 4 piezas editadas</span>
+    </div>
+  </div>
+</section>
+
+<section class="specs">
+  <div class="specs-grid">
+    <div>
+      <div class="section-label">03 / Equipo</div>
+      <h2 class="specs-title">Cámaras.<em>Drone.</em>Estudio.</h2>
+    </div>
+    <ul class="specs-list">
+      <li><span class="num">01</span><span class="name">Cámaras profesionales</span><span class="meta">4K / Full Frame</span></li>
+      <li><span class="num">02</span><span class="name">Drone para tomas aéreas</span><span class="meta">Cinematográfico</span></li>
+      <li><span class="num">03</span><span class="name">Estudio móvil de podcast</span><span class="meta">In-situ</span></li>
+      <li><span class="num">04</span><span class="name">Iluminación profesional</span><span class="meta">LED · Continuo</span></li>
+      <li><span class="num">05</span><span class="name">Edición profesional de video</span><span class="meta">Post-producción</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="section-label">04 / Cómo trabajamos</div>
+  <h2 class="section-title">De la idea <em>al feed</em>.</h2>
+
+  <div class="process-grid">
+    <div class="step reveal">
+      <h4>Briefing</h4>
+      <p>Conversamos sobre tu marca, objetivos y la audiencia a la que apuntas.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Producción</h4>
+      <p>Agendamos la grabación. Cámaras profesionales, drone y estudio móvil según el plan.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Edición</h4>
+      <p>Edición de video, sonido y cortes optimizados para cada red social.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Entrega</h4>
+      <p>Recibes el material listo para publicar en formato vertical y apaisado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="contact-bg"></div>
+  <div class="contact-inner">
+    <div class="contact-eyebrow">— Hablemos —</div>
+    <h2>¿Listo para <em>grabar</em>?</h2>
+    <a href="https://wa.me/56940662286?text=Hola%20AGEPRODUC%2C%20me%20interesa%20cotizar." class="whatsapp-btn">
+      <span>WhatsApp Directo</span>
+      <span>→</span>
+    </a>
+    <div class="contact-info">
+      <div>Teléfono / WhatsApp<span><a href="tel:+56940662286">+56 9 4066 2286</a></span></div>
+      <div>Web<span><a href="https://www.ageproduc.cl" target="_blank" rel="noopener">www.ageproduc.cl</a></span></div>
+      <div>Ubicación<span>Chile</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Ageproduc</div>
+  <div>© 2026 · Productora Audiovisual · Todos los derechos reservados</div>
+  <div>Hecho en Chile ✦</div>
+</footer>
+
+<a href="https://wa.me/56940662286" class="float-wa" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<!-- CHATBOT WIDGET -->
+<div id="chatbot-container">
+  <div id="chatbot-toggle" class="chatbot-toggle">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    <span class="badge">1</span>
+  </div>
+
+  <div id="chatbot-window" class="chatbot-window">
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        <h3>AGEPRODUC Assistant</h3>
+        <p>¿En qué podemos ayudarte?</p>
+      </div>
+      <button id="chatbot-close" class="chatbot-close">✕</button>
+    </div>
+
+    <div id="chatbot-messages" class="chatbot-messages">
+      <div class="message bot-message">
+        <div class="message-content">¡Hola! 👋 Soy el asistente de AGEPRODUC. Puedo ayudarte con preguntas sobre nuestros servicios, planes y presupuestos. ¿En qué puedo asistirte?</div>
+      </div>
+    </div>
+
+    <div class="chatbot-input-area">
+      <div id="chatbot-suggestions" class="chatbot-suggestions">
+        <button class="suggestion-btn" data-intent="services">Servicios</button>
+        <button class="suggestion-btn" data-intent="pricing">Precios</button>
+        <button class="suggestion-btn" data-intent="process">Proceso</button>
+        <button class="suggestion-btn" data-intent="contact">Contactar</button>
+      </div>
+
+      <div class="chatbot-input-wrapper">
+        <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta..." class="chatbot-input">
+        <button id="chatbot-send" class="chatbot-send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.40,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 L4.13399899,1.16153582 C3.34915502,0.9 2.40734225,0.9 1.77946707,1.4265701 C0.994623095,2.0604706 0.837654326,3.0605983 1.15159189,3.84608516 L3.03521743,10.2870782 C3.03521743,10.4441756 3.34915502,10.6012729 3.50612381,10.6012729 L16.6915026,11.3867598 C16.6915026,11.3867598 17.1624089,11.3867598 17.1624089,10.9154676 L17.1624089,11.89 C17.1624089,12.52 17.1624089,12.4744748 16.6915026,12.4744748 Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-// ========= KNOWLEDGE BASE AGEPRODUC =========
-// AQUÍ DEFINES TODAS LAS RESPUESTAS PRECISAS
 const CHATBOT_KNOWLEDGE_BASE = {
-  // INTENTS - Preguntas generales
   services: {
     keywords: ['servicio', 'qué ofrecen', 'que hacen', 'servicios', 'ofrecen'],
     response: `📹 NUESTROS SERVICIOS:
@@ -457,29 +1502,13 @@ Todo el equipamiento es de última generación y está regularizado para trabajo
 ¿Necesitas más detalles técnicos?`
   },
 
-  location: {
-    keywords: ['dónde', 'ubicado', 'ubicación', 'valparaíso', 'dirección', 'región', 'chile'],
-    response: `📍 UBICACIÓN:
-
-Base: Valparaíso, Chile
-
-Trabajamos con clientes de:
-✓ Chile completo
-✓ Latinoamérica
-✓ Contactos internacionales
-
-Realizamos producciones en cualquier ubicación según lo requiera el proyecto.
-
-¿De qué región eres tú?`
-  },
-
   contact: {
-    keywords: ['contactar', 'hablar', 'persona', 'equipo', 'comunicarse', 'llamar', 'contacto', 'directo', 'preferencia'],
+    keywords: ['contactar', 'hablar', 'persona', 'equipo', 'comunicarse', 'llamar', 'contacto', 'directo'],
     response: `📞 CONTACTA CON NUESTRO EQUIPO:
 
 📱 WHATSAPP (RECOMENDADO)
-Enlace directo: https://wa.me/56940662286
-Mensaje rápido: +56 9 4066 2286
+Link: https://wa.me/56940662286
+Teléfono: +56 9 4066 2286
 
 📧 EMAIL
 contacto@ageproduc.cl
@@ -487,29 +1516,11 @@ contacto@ageproduc.cl
 🌐 SITIO WEB
 www.ageproduc.cl
 
-Responden durante:
+Responden:
 Lunes - Viernes: 9:00 - 18:00
 Sábado: 10:00 - 14:00
 
 ¿Cuál medio prefieres?`
-  },
-
-  availability: {
-    keywords: ['disponibilidad', 'agendar', 'cuando', 'fecha', 'disponible', 'próximas fechas', 'agenda'],
-    response: `📅 DISPONIBILIDAD:
-
-Nos adaptamos a tu agenda.
-
-Agendamos producciones:
-✓ Semanales
-✓ Quincenales
-✓ Mensuales
-✓ Eventos específicos
-
-Para revisar disponibilidad y agendar:
-📱 WhatsApp: https://wa.me/56940662286
-
-¿Tienes una fecha en mente?`
   },
 
   default: {
@@ -520,8 +1531,6 @@ Pero puedo ayudarte con:
 ✓ Precios y planes
 ✓ Proceso de trabajo
 ✓ Equipamiento
-✓ Ubicación
-✓ Disponibilidad
 
 O contacta directo con nuestro equipo:
 📱 WhatsApp: https://wa.me/56940662286
@@ -529,7 +1538,6 @@ O contacta directo con nuestro equipo:
   }
 };
 
-// ========= CHATBOT CLASS =========
 class ChatbotAGEPRODUC {
   constructor() {
     this.toggle = document.getElementById('chatbot-toggle');
@@ -638,7 +1646,6 @@ class ChatbotAGEPRODUC {
   getResponse(userMessage) {
     const lowerText = userMessage.toLowerCase().trim();
 
-    // Buscar en la knowledge base
     for (const [key, data] of Object.entries(CHATBOT_KNOWLEDGE_BASE)) {
       if (key === 'default') continue;
       
@@ -647,12 +1654,10 @@ class ChatbotAGEPRODUC {
       }
     }
 
-    // Si no encuentra match, respuesta por defecto
     return CHATBOT_KNOWLEDGE_BASE.default.response;
   }
 }
 
-// Inicializar
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     new ChatbotAGEPRODUC();
@@ -660,4 +1665,95 @@ if (document.readyState === 'loading') {
 } else {
   new ChatbotAGEPRODUC();
 }
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Update year
+document.querySelector('footer div:nth-child(2)').innerHTML =
+  `© ${new Date().getFullYear()} · Productora Audiovisual · Todos los derechos reservados`;
+
+// Drone animation
+(function() {
+  const drone = document.getElementById('drone');
+  if (!drone) return;
+
+  let x = window.innerWidth * 0.2;
+  let y = window.innerHeight * 0.3;
+  let targetX = x;
+  let targetY = y;
+  let vx = 0;
+  let vy = 0;
+  let currentRotation = 0;
+  let speedMultiplier = 1;
+
+  const sizes = [55, 75, 95, 120, 150];
+  let currentSize = 90;
+
+  function pickNewTarget() {
+    const margin = 100;
+    targetX = margin + Math.random() * (window.innerWidth - margin * 2);
+    targetY = margin + Math.random() * (window.innerHeight - margin * 2);
+  }
+
+  function changeSize() {
+    const newSize = sizes[Math.floor(Math.random() * sizes.length)];
+    if (newSize !== currentSize) {
+      currentSize = newSize;
+      drone.style.width = newSize + 'px';
+      drone.style.height = newSize + 'px';
+    }
+  }
+
+  function changeSpeed() {
+    speedMultiplier = 0.4 + Math.random() * 1.8;
+  }
+
+  pickNewTarget();
+
+  setInterval(pickNewTarget, 2200);
+  setInterval(changeSize, 4500);
+  setInterval(changeSpeed, 3000);
+
+  function animate() {
+    const dx = targetX - x;
+    const dy = targetY - y;
+
+    vx += dx * 0.0008 * speedMultiplier;
+    vy += dy * 0.0008 * speedMultiplier;
+
+    vx *= 0.95;
+    vy *= 0.95;
+
+    x += vx;
+    y += vy;
+
+    const targetRotation = vx * 1.5;
+    currentRotation += (targetRotation - currentRotation) * 0.1;
+    const bob = Math.sin(Date.now() * 0.004) * 2;
+
+    drone.style.transform = `translate3d(${x - currentSize/2}px, ${y - currentSize/2 + bob}px, 0) rotate(${currentRotation}deg)`;
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    x = Math.min(x, window.innerWidth - 50);
+    y = Math.min(y, window.innerHeight - 50);
+    pickNewTarget();
+  });
+})();
 </script>
+
+</body>
+</html>
