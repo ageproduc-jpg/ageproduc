@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGEPRODUC — Productora Audiovisual</title>
+<meta name="description" content="Productora audiovisual. Contenido para redes sociales, drone, podcast móvil, fotografía y video profesional.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0a0908;
+  --bg-alt: #131210;
+  --ink: #f5f1e8;
+  --ink-dim: #8a8377;
+  --accent: #ff4d1c;
+  --accent-soft: #f0b67f;
+  --line: rgba(245, 241, 232, 0.08);
+  --grain-opacity: 0.06;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.5;
+  cursor: default;
+}
+
+/* Grano cinematográfico */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ========= NAV ========= */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: difference;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+nav .logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  font-style: italic;
+  text-transform: none;
+}
+
+nav .logo::after {
+  content: '●';
+  color: var(--accent);
+  margin-left: 0.4rem;
+  font-size: 0.6rem;
+  vertical-align: middle;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+nav ul {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  transition: opacity 0.3s;
+}
+
+nav a:hover { opacity: 0.5; }
+
+nav .cta-mini {
+  border: 1px solid var(--ink);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+}
+
+/* ========= HERO ========= */
+.hero {
+  min-height: 100vh;
+  padding: 8rem 2.5rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  position: relative;
+  align-items: end;
+}
+
+.hero-meta {
+  position: absolute;
+  top: 8rem;
+  right: 2.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 2;
+}
+
+.hero-meta span { color: var(--accent); }
+
+.hero-title {
+  grid-column: 1 / -1;
+  font-size: clamp(4rem, 14vw, 13rem);
+  font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title .word {
+  display: inline-block;
+  animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.hero-title .word:nth-child(1) { animation-delay: 0.1s; }
+.hero-title .word:nth-child(2) { animation-delay: 0.25s; }
+.hero-title .word:nth-child(3) { animation-delay: 0.4s; }
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hero-sub {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+  align-items: end;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  max-width: 32ch;
+  color: var(--ink-dim);
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero-tagline strong {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-self: end;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.8rem;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px);
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.btn.primary:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.btn .arrow {
+  display: inline-block;
+  transition: transform 0.4s;
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Marquee */
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.2rem 0;
+  overflow: hidden;
+  background: var(--bg-alt);
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  animation: scroll 30s linear infinite;
+  white-space: nowrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.marquee-track span { display: inline-flex; align-items: center; gap: 4rem; }
+.marquee-track span::after {
+  content: '✦';
+  color: var(--accent);
+  margin-left: 4rem;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========= SERVICIOS ========= */
+.section {
+  padding: 7rem 2.5rem;
+  position: relative;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 2.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 4rem;
+  max-width: 18ch;
+}
+
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-soft);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.service {
+  padding: 2.5rem 1.8rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background 0.4s;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.service:last-child { border-right: none; }
+
+.service:hover {
+  background: var(--bg-alt);
+}
+
+.service-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  margin: 1rem 0 1.5rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.service h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.8rem;
+  line-height: 1.1;
+}
+
+.service p {
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+  line-height: 1.5;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 300;
+  flex-grow: 1;
+}
+
+.service-tag {
+  margin-top: 1.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+}
+
+/* ========= STARTER PACK ========= */
+.starter {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+  padding: 8rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.starter::before {
+  content: 'STARTER';
+  position: absolute;
+  bottom: -3rem;
+  right: -2rem;
+  font-size: clamp(8rem, 22vw, 22rem);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--accent);
+  opacity: 0.04;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  line-height: 0.8;
+}
+
+.starter-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.starter-header h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+}
+
+.starter-header h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.starter-header p {
+  font-size: 1.05rem;
+  color: var(--ink-dim);
+  line-height: 1.6;
+  max-width: 35ch;
+  font-style: italic;
+}
+
+.price-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 3rem;
+  border-radius: 4px;
+  position: relative;
+}
+
+.price-badge {
+  position: absolute;
+  top: -0.7rem;
+  left: 3rem;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.price-strike {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--ink-dim);
+  text-decoration: line-through;
+}
+
+.price-main {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: 'Fraunces', serif;
+  margin-top: 0.5rem;
+}
+
+.price-currency {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.price-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.05em;
+}
+
+.price-iva {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ink-dim);
+  margin-top: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.price-features {
+  list-style: none;
+  margin: 2.5rem 0;
+  border-top: 1px solid var(--line);
+  padding-top: 2rem;
+}
+
+.price-features li {
+  padding: 0.9rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.95rem;
+}
+
+.price-features li:last-child { border-bottom: none; }
+
+.price-features .check {
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.price-features strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.discount-banner {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 1.2rem 1.5rem;
+  border-radius: 4px;
+  margin: 1.5rem 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.discount-banner strong {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.discount-banner span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ========= SECONDARY PACK ========= */
+.combo {
+  padding: 6rem 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.combo-inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.combo-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  justify-self: center;
+}
+
+.combo-content h3 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.combo-content h3 em {
+  font-style: italic;
+  color: var(--accent-soft);
+}
+
+.combo-content p {
+  font-size: 1rem;
+  color: var(--ink-dim);
+  line-height: 1.6;
+  max-width: 50ch;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 300;
+}
+
+.combo-price {
+  text-align: right;
+}
+
+.combo-price .num {
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.combo-price .num-prefix {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+  display: block;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.1em;
+}
+
+.combo-price .num-suffix {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ink-dim);
+  display: block;
+  margin-top: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ========= EQUIPO / SPECS ========= */
+.specs {
+  padding: 7rem 2.5rem;
+  background: var(--bg-alt);
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.specs-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.specs-title em {
+  font-style: italic;
+  color: var(--accent);
+  display: block;
+}
+
+.specs-list {
+  list-style: none;
+}
+
+.specs-list li {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 2rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+  transition: padding 0.3s;
+}
+
+.specs-list li:hover {
+  padding-left: 1rem;
+}
+
+.specs-list .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+}
+
+.specs-list .name {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.specs-list .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ========= PROCESO ========= */
+.process {
+  padding: 7rem 2.5rem;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.step::before {
+  content: '0' counter(step);
+  counter-increment: step;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  background: var(--bg);
+  padding-right: 1rem;
+  transform: translateY(-50%);
+}
+
+.step h4 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.step p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ========= CTA / CONTACTO ========= */
+.contact {
+  padding: 8rem 2.5rem;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 77, 28, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.contact-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.contact h2 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 3rem;
+}
+
+.contact h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 3rem;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.whatsapp-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.whatsapp-btn:hover::before {
+  transform: translateY(0);
+}
+
+.whatsapp-btn:hover {
+  color: var(--bg);
+}
+
+.whatsapp-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.contact-info div {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+}
+
+.contact-info div span {
+  display: block;
+  color: var(--ink);
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+.contact-info a { color: inherit; text-decoration: none; transition: color 0.3s; }
+.contact-info a:hover { color: var(--accent); }
+
+/* ========= FOOTER ========= */
+footer {
+  padding: 3rem 2.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+footer .logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+/* ========= FLOATING WHATSAPP ========= */
+.float-wa {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 60;
+  background: var(--accent);
+  color: var(--bg);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.8rem;
+  box-shadow: 0 10px 40px rgba(255, 77, 28, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: floatPulse 3s ease-in-out infinite;
+}
+
+@keyframes floatPulse {
+  0%, 100% { box-shadow: 0 10px 40px rgba(255, 77, 28, 0.4); }
+  50% { box-shadow: 0 10px 60px rgba(255, 77, 28, 0.7); }
+}
+
+.float-wa:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  nav ul { display: none; }
+  nav .cta-mini { display: inline-flex; }
+
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-meta { display: none; }
+  .hero-sub { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-actions { justify-self: start; }
+
+  .section, .starter, .combo, .specs, .process, .contact { padding: 5rem 1.5rem; }
+
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .service:nth-child(2n) { border-right: none; }
+
+  .starter-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .price-card { padding: 2rem 1.5rem; }
+
+  .combo-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .combo-label { writing-mode: horizontal-tb; transform: none; justify-self: start; }
+  .combo-price { text-align: left; }
+
+  .specs-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .specs-list li { grid-template-columns: 60px 1fr; }
+  .specs-list .meta { grid-column: 2; }
+
+  .process-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+@media (max-width: 560px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service { border-right: none !important; }
+  .process-grid { grid-template-columns: 1fr; }
+  .float-wa { width: 54px; height: 54px; bottom: 1.2rem; right: 1.2rem; font-size: 1.5rem; }
+}
+
+/* ========= SCROLL REVEAL ========= */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========= DRONE VOLADOR ========= */
+.drone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 90px;
+  z-index: 40;
+  pointer-events: none;
+  will-change: transform;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+}
+
+.drone svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.drone .rotor {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: spin 0.12s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.drone .blur-ring {
+  opacity: 0.35;
+}
+
+/* Sombra ligera bajo el drone */
+.drone::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  width: 50%;
+  height: 8px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(255, 77, 28, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drone { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Drone volador -->
+<div class="drone" id="drone" aria-hidden="true">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- Brazos del drone (X) -->
+    <line x1="22" y1="22" x2="78" y2="78" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="78" y1="22" x2="22" y2="78" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Cuerpo central -->
+    <rect x="38" y="38" width="24" height="24" rx="4" fill="#222" stroke="#ff4d1c" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="4" fill="#ff4d1c"/>
+    <circle cx="50" cy="50" r="1.5" fill="#fff"/>
+
+    <!-- Anillos borrosos (efecto de hélices girando rápido) -->
+    <circle class="blur-ring" cx="22" cy="22" r="12" fill="none" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+    <circle class="blur-ring" cx="78" cy="22" r="12" fill="none" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+    <circle class="blur-ring" cx="22" cy="78" r="12" fill="none" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+    <circle class="blur-ring" cx="78" cy="78" r="12" fill="none" stroke="#888" stroke-width="0.8" stroke-dasharray="2 3"/>
+
+    <!-- Hélices animadas (4 esquinas) -->
+    <g class="rotor" style="transform-origin: 22px 22px;">
+      <ellipse cx="22" cy="22" rx="11" ry="1.5" fill="#444"/>
+      <ellipse cx="22" cy="22" rx="1.5" ry="11" fill="#444"/>
+      <circle cx="22" cy="22" r="2" fill="#ff4d1c"/>
+    </g>
+    <g class="rotor" style="transform-origin: 78px 22px; animation-delay: -0.03s;">
+      <ellipse cx="78" cy="22" rx="11" ry="1.5" fill="#444"/>
+      <ellipse cx="78" cy="22" rx="1.5" ry="11" fill="#444"/>
+      <circle cx="78" cy="22" r="2" fill="#ff4d1c"/>
+    </g>
+    <g class="rotor" style="transform-origin: 22px 78px; animation-delay: -0.06s;">
+      <ellipse cx="22" cy="78" rx="11" ry="1.5" fill="#444"/>
+      <ellipse cx="22" cy="78" rx="1.5" ry="11" fill="#444"/>
+      <circle cx="22" cy="78" r="2" fill="#ff4d1c"/>
+    </g>
+    <g class="rotor" style="transform-origin: 78px 78px; animation-delay: -0.09s;">
+      <ellipse cx="78" cy="78" rx="11" ry="1.5" fill="#444"/>
+      <ellipse cx="78" cy="78" rx="1.5" ry="11" fill="#444"/>
+      <circle cx="78" cy="78" r="2" fill="#ff4d1c"/>
+    </g>
+
+    <!-- Pequeña luz LED parpadeante -->
+    <circle cx="50" cy="62" r="1.2" fill="#ff4d1c">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+  </svg>
+</div>
+
+<nav>
+  <div class="logo">Ageproduc</div>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#pack">Starter Pack</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/56940662286" class="cta-mini">WhatsApp →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-meta">
+    <div>EST. <span>VALPARAÍSO</span></div>
+    <div>CHILE <span>·</span> AMÉRICA</div>
+    <div>PRODUCTORA <span>AUDIOVISUAL</span></div>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line"><span class="word">Historias</span></span>
+    <span class="line"><span class="word"><em>que</em></span></span>
+    <span class="line"><span class="word">se ven.</span></span>
+  </h1>
+
+  <div class="hero-sub">
+    <p class="hero-tagline">
+      Productora audiovisual especializada en <strong>contenido para redes sociales</strong>, fotografía profesional, drones y podcast móvil. Cámaras profesionales, formato vertical y apaisado.
+    </p>
+    <div class="hero-actions">
+      <a href="#pack" class="btn primary">Ver Starter Pack <span class="arrow">→</span></a>
+      <a href="#servicios" class="btn">Servicios</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Cámaras Profesionales</span>
+    <span>Drone 4K</span>
+    <span>Estudio Móvil</span>
+    <span>Reels & Verticales</span>
+    <span>Fotografía</span>
+    <span>Podcast in-situ</span>
+    <span>Cámaras Profesionales</span>
+    <span>Drone 4K</span>
+    <span>Estudio Móvil</span>
+    <span>Reels & Verticales</span>
+    <span>Fotografía</span>
+    <span>Podcast in-situ</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="section-label">01 / Servicios</div>
+  <h2 class="section-title">Todo lo que tu marca <em>necesita ver</em>.</h2>
+
+  <div class="services-grid">
+    <div class="service reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">▲</div>
+      <h3>Redes Sociales</h3>
+      <p>Contenido optimizado para Instagram, TikTok y YouTube. Vertical y apaisado.</p>
+      <div class="service-tag">Reels · Stories · Posts</div>
+    </div>
+
+    <div class="service reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon">◐</div>
+      <h3>Fotografía Pro</h3>
+      <p>Cámaras de gama profesional. Iluminación y edición cuidada para cada toma.</p>
+      <div class="service-tag">Producto · Lifestyle · Marca</div>
+    </div>
+
+    <div class="service reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon">◇</div>
+      <h3>Imágenes con Drone</h3>
+      <p>Vistas aéreas de alto impacto. Planos imposibles para destacar entre la competencia.</p>
+      <div class="service-tag">Aéreo · Cinematográfico</div>
+    </div>
+
+    <div class="service reveal">
+      <div class="service-num">04</div>
+      <div class="service-icon">◉</div>
+      <h3>Podcast Móvil</h3>
+      <p>Grabamos en tu lugar. Estudio móvil completo, producción y edición a medida.</p>
+      <div class="service-tag">In-situ · Edición · Temáticas</div>
+    </div>
+  </div>
+</section>
+
+<!-- STARTER PACK -->
+<section class="starter" id="pack">
+  <div class="starter-inner">
+    <div class="starter-header">
+      <div class="section-label">02 / Plan estrella</div>
+      <h2>Starter Pack <em>3 meses</em>.</h2>
+      <p>Pensado para marcas que quieren constancia y calidad sin pagar por cada pieza por separado. Producción mensual, edición y entrega lista para publicar.</p>
+    </div>
+
+    <div class="price-card">
+      <div class="price-badge">Plan estrella</div>
+
+      <div class="price-main">
+        <em style="font-style:italic;color:var(--accent);">Starter</em>
+      </div>
+      <div class="price-iva">Plan mensual · 3 meses</div>
+
+      <div class="discount-banner">
+        <strong>Tarifa preferencial por contrato de 3 meses</strong>
+        <span>Promo</span>
+      </div>
+
+      <ul class="price-features">
+        <li>
+          <span class="check">[01]</span>
+          <span><strong>10 fotografías semanales</strong> profesionales editadas y listas para publicar</span>
+        </li>
+        <li>
+          <span class="check">[02]</span>
+          <span><strong>2 videos profesionales tipo reel</strong> al mes, totalmente editados</span>
+        </li>
+        <li>
+          <span class="check">[03]</span>
+          <span><strong>Imágenes con drone</strong> incluidas en los videos del mes</span>
+        </li>
+        <li>
+          <span class="check">[04]</span>
+          <span>Formato <strong>vertical y apaisado</strong> según necesidad de cada red</span>
+        </li>
+        <li>
+          <span class="check">[05]</span>
+          <span>Cámaras <strong>profesionales</strong> y edición lista para publicar</span>
+        </li>
+      </ul>
+
+      <a href="https://wa.me/56940662286?text=Hola%2C%20quiero%20cotizar%20el%20Starter%20Pack%20de%203%20meses." class="btn primary" style="width:100%;justify-content:center;">Solicitar cotización <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- COMBO 4 VIDEOS -->
+<section class="combo">
+  <div class="combo-inner">
+    <div class="combo-label">Pack express</div>
+    <div class="combo-content">
+      <h3>4 videos en <em>un solo día</em>.</h3>
+      <p>Producción intensiva: agendamos una jornada, grabamos las cuatro piezas y entregamos editado. Ideal para campañas y lanzamientos rápidos.</p>
+    </div>
+    <div class="combo-price">
+      <span class="num-prefix">Pack express</span>
+      <a href="https://wa.me/56940662286?text=Hola%2C%20me%20interesa%20el%20pack%20de%204%20videos%20en%20un%20d%C3%ADa." class="btn primary" style="margin-top:0.5rem;">Solicitar cotización <span class="arrow">→</span></a>
+      <span class="num-suffix">1 día de grabación · 4 piezas editadas</span>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS / EQUIPO -->
+<section class="specs">
+  <div class="specs-grid">
+    <div>
+      <div class="section-label">03 / Equipo</div>
+      <h2 class="specs-title">Cámaras.<em>Drone.</em>Estudio.</h2>
+    </div>
+    <ul class="specs-list">
+      <li>
+        <span class="num">01</span>
+        <span class="name">Cámaras profesionales</span>
+        <span class="meta">4K / Full Frame</span>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <span class="name">Drone para tomas aéreas</span>
+        <span class="meta">Cinematográfico</span>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <span class="name">Estudio móvil de podcast</span>
+        <span class="meta">In-situ</span>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <span class="name">Iluminación profesional</span>
+        <span class="meta">LED · Continuo</span>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <span class="name">Edición profesional de video</span>
+        <span class="meta">Post-producción</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process" id="proceso">
+  <div class="section-label">04 / Cómo trabajamos</div>
+  <h2 class="section-title">De la idea <em>al feed</em>.</h2>
+
+  <div class="process-grid">
+    <div class="step reveal">
+      <h4>Briefing</h4>
+      <p>Conversamos sobre tu marca, objetivos y la audiencia a la que apuntas.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Producción</h4>
+      <p>Agendamos la grabación. Cámaras profesionales, drone y estudio móvil según el plan.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Edición</h4>
+      <p>Edición de video, sonido y cortes optimizados para cada red social.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Entrega</h4>
+      <p>Recibes el material listo para publicar en formato vertical y apaisado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="contact-bg"></div>
+  <div class="contact-inner">
+    <div class="contact-eyebrow">— Hablemos —</div>
+    <h2>¿Listo para <em>grabar</em>?</h2>
+    <a href="https://wa.me/56940662286?text=Hola%20AGEPRODUC%2C%20me%20interesa%20cotizar." class="whatsapp-btn">
+      <span>WhatsApp Directo</span>
+      <span>→</span>
+    </a>
+    <div class="contact-info">
+      <div>
+        Teléfono / WhatsApp
+        <span><a href="tel:+56940662286">+56 9 4066 2286</a></span>
+      </div>
+      <div>
+        Web
+        <span><a href="https://www.ageproduc.cl" target="_blank" rel="noopener">www.ageproduc.cl</a></span>
+      </div>
+      <div>
+        Ubicación
+        <span>Chile</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Ageproduc</div>
+  <div>© 2026 · Productora Audiovisual · Todos los derechos reservados</div>
+  <div>Hecho en Chile ✦</div>
+</footer>
+
+<a href="https://wa.me/56940662286" class="float-wa" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Update year
+document.querySelector('footer div:nth-child(2)').innerHTML =
+  `© ${new Date().getFullYear()} · Productora Audiovisual · Todos los derechos reservados`;
+
+/* ========= DRONE VOLADOR ========= */
+(function() {
+  const drone = document.getElementById('drone');
+  if (!drone) return;
+
+  // Posición y velocidad actuales
+  let x = window.innerWidth * 0.2;
+  let y = window.innerHeight * 0.3;
+  let targetX = x;
+  let targetY = y;
+  let vx = 0;
+  let vy = 0;
+  let currentRotation = 0;
+  let speedMultiplier = 1; // velocidad cambia con el tiempo
+
+  // Tamaños posibles (px)
+  const sizes = [55, 75, 95, 120, 150];
+  let currentSize = 90;
+
+  // Elegir un nuevo destino aleatorio dentro del viewport
+  function pickNewTarget() {
+    const margin = 100;
+    targetX = margin + Math.random() * (window.innerWidth - margin * 2);
+    targetY = margin + Math.random() * (window.innerHeight - margin * 2);
+  }
+
+  // Cambiar tamaño aleatoriamente
+  function changeSize() {
+    const newSize = sizes[Math.floor(Math.random() * sizes.length)];
+    if (newSize !== currentSize) {
+      currentSize = newSize;
+      drone.style.width = newSize + 'px';
+      drone.style.height = newSize + 'px';
+    }
+  }
+
+  // Cambiar velocidad aleatoriamente (entre lento y rápido)
+  function changeSpeed() {
+    // entre 0.4 (lento, dron cinematográfico) y 2.2 (rápido, dron deportivo)
+    speedMultiplier = 0.4 + Math.random() * 1.8;
+  }
+
+  // Inicial
+  pickNewTarget();
+
+  // Cambios periódicos
+  setInterval(pickNewTarget, 2200);              // nuevo punto cada ~2.2s
+  setInterval(changeSize, 4500);                 // nuevo tamaño cada ~4.5s
+  setInterval(changeSpeed, 3000);                // nueva velocidad cada ~3s
+
+  // Loop de animación
+  function animate() {
+    // Movimiento suave hacia el objetivo (easing tipo física)
+    const dx = targetX - x;
+    const dy = targetY - y;
+
+    // Acelerar hacia el objetivo
+    vx += dx * 0.0008 * speedMultiplier;
+    vy += dy * 0.0008 * speedMultiplier;
+
+    // Fricción (para no acelerar infinitamente)
+    vx *= 0.95;
+    vy *= 0.95;
+
+    x += vx;
+    y += vy;
+
+    // Inclinación del drone según dirección de movimiento (más realista)
+    const targetRotation = vx * 1.5; // se inclina hacia donde va
+    currentRotation += (targetRotation - currentRotation) * 0.1;
+    // Pequeño bobbing vertical para simular vuelo
+    const bob = Math.sin(Date.now() * 0.004) * 2;
+
+    drone.style.transform = `translate3d(${x - currentSize/2}px, ${y - currentSize/2 + bob}px, 0) rotate(${currentRotation}deg)`;
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Re-ajustar si cambia el tamaño de ventana
+  window.addEventListener('resize', () => {
+    x = Math.min(x, window.innerWidth - 50);
+    y = Math.min(y, window.innerHeight - 50);
+    pickNewTarget();
+  });
+})();
+</script>
+
+</body>
+</html>

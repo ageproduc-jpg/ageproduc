@@ -1,0 +1,156 @@
+# robots.txt for ageproduc.cl
+# Optimized for SEO and bot management
+
+# Allow all search engine bots to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow access to sensitive or non-essential directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /config/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Disallow crawling of duplicate content
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+Disallow: /*?utm_source=
+Disallow: /*?utm_medium=
+Disallow: /*?utm_campaign=
+
+# Disallow crawling of common backup and system files
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.sql$
+Disallow: /*.zip$
+Disallow: /*.tar$
+Disallow: /*.gz$
+
+# Disallow crawling of duplicate mobile/desktop versions if applicable
+# Disallow: /mobile/
+
+# Allow specific search engines to index (all allowed by default above)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Block bad bots and scrapers
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SiteAuditBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Exploratodo
+Disallow: /
+
+User-agent: asterias
+Disallow: /
+
+User-agent: BUbiNG
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Cliqzbot
+Disallow: /
+
+User-agent: crawler4j
+Disallow: /
+
+User-agent: findlinks
+Disallow: /
+
+User-agent: image crawler
+Disallow: /
+
+User-agent: Java
+Disallow: /
+
+User-agent: nutch
+Disallow: /
+
+User-agent: poppi
+Disallow: /
+
+User-agent: turnitinbot
+Disallow: /
+
+User-agent: UnwindFetchor
+Disallow: /
+
+User-agent: Wget
+Disallow: /
+
+User-agent: Z-Cbot
+Disallow: /
+
+User-agent: zsEsense
+Disallow: /
+
+# Allow AI training bots (you can customize this based on preference)
+# GPTBot (OpenAI's crawler)
+User-agent: GPTBot
+Allow: /
+
+# CCBot (Common Crawl)
+User-agent: CCBot
+Disallow: /
+
+# Anthropic's Claude crawler
+User-agent: Claude-Web
+Allow: /
+
+# Google's AI crawler
+User-agent: Google-Duet
+Allow: /
+
+# Perplexity AI crawler
+User-agent: PerplexityBot
+Allow: /
+
+# Specify crawl delay for slower connections (in seconds)
+# This tells bots to wait between requests
+Crawl-delay: 1
+
+# Request-rate: number of pages per second (alternative to Crawl-delay)
+Request-rate: 1/1s
+
+# Sitemap location (update when you create sitemap.xml)
+Sitemap: https://ageproduc.cl/sitemap.xml
+
+# Cache control and expiration
+# Note: These directives may not be followed by all bots
+Cache-Control: max-age=86400
+
+# End of robots.txt
