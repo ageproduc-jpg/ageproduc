@@ -10,6 +10,17 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ageproduc.cl"
+        }
+      ],
+      "destination": "https://ageproduc.cl/:path",
+      "permanent": true
     }
   ],
   "headers": [
